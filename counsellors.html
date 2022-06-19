@@ -60,7 +60,7 @@
       <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
       <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
     </head>
-    <body>
+    
     
     <div class="container">
        
@@ -161,4 +161,72 @@
 
    
         </section>
+        <script type="module">
+
+ 
+
+          // Import the functions you need from the SDKs you need
+          import { initializeApp } from "https://www.gstatic.com/firebasejs/9.8.3/firebase-app.js";
+          import { getDatabase, set, ref, update } from "https://www.gstatic.com/firebasejs/9.8.3/firebase-database.js";
+          import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/9.8.3/firebase-auth.js";
+          // TODO: Add SDKs for Firebase products that you want to use
+          // https://firebase.google.com/docs/web/setup#available-libraries
+        
+          // Your web app's Firebase configuration
+        
+             var firebaseConfig = {
+              apiKey: "AIzaSyBJxdUZ9UowJqtuWMetNfbS8RAqnr3I4Xg",
+            authDomain: "fguide.firebaseapp.com",
+            databaseURL: "https://fguide-default-rtdb.firebaseio.com",
+            projectId: "fguide",
+            storageBucket: "fguide.appspot.com",
+            messagingSenderId: "176720614978",
+            appId: "1:176720614978:web:42a862dc010e79ec5a3fdb",
+            measurementId: "G-M1ZZCM99RR"
+               };
+        
+          // Initialize Firebase
+          const app = initializeApp(firebaseConfig);
+          const database = getDatabase(app);
+          const auth = getAuth();
+          // logout.addEventListener('click',(e)=>{
+        
+        const user = auth.currentUser;
+        // onAuthStateChanged(auth, (user) => {
+        //   if (user) {
+        //     // User is signed in, see docs for a list of available properties
+        //     // https://firebase.google.com/docs/reference/js/firebase.User
+        //     const uid = user.uid;
+        //     //bla bla bla
+        //     // ...
+        //   } else {
+        //     // User is signed out
+        //     // ...
+        //     //bla bla bla
+        //   }
+        // });
+        
+        logout.addEventListener('click',(e)=>{
+        
+           signOut(auth).then(() => {
+             // Sign-out successful.
+             alert('user loged out');
+             force_load_local();
+           }).catch((error) => {
+             // An error happened.
+             const errorCode = error.code;
+             const errorMessage = error.message;
+        
+                alert(errorMessage);
+           });
+        
+        });
+        function force_load_local() {
+                window.location = 
+                    "index.html"
+            }
+        
+        </script>
+    </body>
+      </html>
       
